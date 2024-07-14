@@ -1,0 +1,112 @@
+body{
+    text-align: center;
+}
+
+form{
+    background-color: rgb(9, 108, 2);
+    border-radius: 5%;
+    text-align: center;
+    max-width: 500px;
+    height:600px;
+    margin-top: 0px;
+    margin-right: 20px;
+}
+#container1{
+    display:flex;
+    align-items: center;
+}
+.bet_place{
+    z-index: 999;
+
+    font-size:2em;
+    font-weight: bold;
+    text-align: center;
+    width: 100px;
+    padding:30px;
+    border-radius: 10px;
+    margin-top: 3px;
+    margin-right: 1px;
+
+    background-color: rgb(0, 190, 0);
+    color:white;
+    cursor:pointer;
+    border-color:darkgreen;
+}
+.coin{
+    visibility: hidden;
+    z-index: 0;
+    position: absolute;
+
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+
+    border-width: 8px;
+    border-color: red;
+    margin-top: 7px;
+    margin-left:15px;
+    height:70px;
+    width:70px;
+    border-radius: 100%;
+}
+.mult{
+    z-index:0;
+
+    color:rgb(100, 215, 100);
+    background-color: rgb(0, 76, 0);
+    text-align: center;
+    height: 23px;
+    width: 90px;
+    font-weight:550;
+    
+    font-size: 1.1em;
+    position: absolute;
+    margin-top:79px;
+    margin-left:5px;
+    border-radius: 50px 50px 10px 10px;
+
+}
+
+
+
+
+#betOptions{
+    z-index: 0;
+    margin-top:-15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    align-items: center;
+
+    color:white;
+    background-color: rgb(0, 71, 0);
+
+
+
+}
+#play{
+    margin-top:-15px;
+}
+#submit{
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding:8px;
+    color:rgb(61, 61, 1);
+    background-color: yellow;
+    box-shadow: none;
+
+}
+
+#dollar{
+    background-color: rgb(0, 79, 0);
+    font-size:2em;
+    color:white
+}
+#money{
+    background-color: rgb(0, 79, 0);
+    color:white;
+    font-size: 2em;
+    margin-right: 20px;
+}
