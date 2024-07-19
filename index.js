@@ -36,8 +36,29 @@ function bet_bound(){
     if(money<10){
         bet10.disabled=true;
     }
+    if(money<5){
+        bet5.disabled=true;
+    }
 }
-
+function bet_unbound(){
+    if(money>=100){
+        bet100.disabled=false;
+    }
+    if(money>=50)
+    {
+        bet50.disabled=false;
+    }
+    if(money>=25)
+    {
+        bet25.disabled=false;
+    }
+    if(money>=10){
+        bet10.disabled=false;
+    }
+    if(money>=5){
+        bet5.disabled=false;
+    }
+}
 function coin_color(coin){
     if(coin.value>9)
     {
@@ -57,43 +78,46 @@ function coin_color(coin){
     }
 }
 function betting(checkedBet,coin){
-    switch(checkedBet.id){
-        case "bet5":
-            reduceMoney(5,coin);
-            bet_bound();
-            break;
-        case "bet10":
-            reduceMoney(10,coin);
-            bet_bound();
-            if(money<10){
-                bet5.checked = true;
-            }
-            break;
-        case "bet25":
-            reduceMoney(25,coin);
-            bet_bound();
-            if(money<25)
-            {
-                bet10.checked=true;
-            }
-            break;
-        case "bet50":
-            reduceMoney(50,coin);
-            bet_bound();
-            if(money<50)
-            {
-                bet25.checked=true;
-            }
-            break;
-        case "bet100":
-            reduceMoney(100,coin);
-            bet_bound();
-            
-            if(money<100){
-                bet50.checked=true;
-            }
-            break;
+    if(money>=5){
+        switch(checkedBet.id){
+            case "bet5":
+                reduceMoney(5,coin);
+                bet_bound();
+                break;
+            case "bet10":
+                reduceMoney(10,coin);
+                bet_bound();
+                if(money<10){
+                    bet5.checked = true;
+                }
+                break;
+            case "bet25":
+                reduceMoney(25,coin);
+                bet_bound();
+                if(money<25)
+                {
+                    bet5.checked=true;
+                }
+                break;
+            case "bet50":
+                reduceMoney(50,coin);
+                bet_bound();
+                if(money<50)
+                {
+                    bet5.checked=true;
+                }
+                break;
+            case "bet100":
+                reduceMoney(100,coin);
+                bet_bound();
+                
+                if(money<100){
+                    bet5.checked=true;
+                }
+                break;
+        }
     }
+    
 }
 
 function roll_animation(dice,delay){
@@ -140,6 +164,7 @@ for(let i=0; i<bet_spaces.length;i++){
         bet_placed.push(coin[i]);
         document.getElementById("money").textContent = money;
     }
+
     coin[i].onclick = function(){
         let checkedBet = document.querySelector('input[name="bets"]:checked');
         betting(checkedBet,coin[i]);
@@ -147,6 +172,13 @@ for(let i=0; i<bet_spaces.length;i++){
         bet_placed.push(coin[i]);
         document.getElementById("money").textContent = money;
     }
+    coin[i].addEventListener('contextmenu',(event)=>{
+        event.preventDefault();
+        money+=Number(coin[i].value);
+        coinReset(coin[i]);
+        document.getElementById("money").textContent = money;
+        bet_unbound();
+    });
     
 
 }
@@ -177,6 +209,7 @@ submit.onclick = function()
         money += coin.value * multiplier;
         console.log("PAYOUT:"+coin.value * multiplier);
         document.getElementById("money").textContent = money;
+        bet_unbound();
 
         coin.value*=multiplier;
     }
